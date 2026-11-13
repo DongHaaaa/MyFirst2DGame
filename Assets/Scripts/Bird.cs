@@ -8,14 +8,13 @@ public class Bird : MonoBehaviour
     [SerializeField] private int _score = 0;
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private GameObject _checkScore;
-    [SerializeField] private GameObject _gameOver;
+    [SerializeField] private GameObject GamemanagerFB;
     private Rigidbody2D rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         _scoreText.text = _score.ToString();
-        _gameOver.SetActive(false);
     }
     private void Update()
     {
@@ -35,8 +34,7 @@ public class Bird : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        _gameOver.SetActive(true);
-        Time.timeScale = 0;
+        GamemanagerFB.GetComponent<GamemanagerFB>().GameOver();
     }
     private void FixedUpdate()
     {
